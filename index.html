@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green Apple | جرين ابل للاستثمار الزراعي</title>
+<meta name="description" content="جرين ابل للاستثمار الزراعي — 6 وكالات عالمية و60 مركب متخصص للتغذية والمنشطات الحيوية والحماية. اختار الأفضل لمحصولك.">
+<meta name="theme-color" content="#04110a">
+<link rel="icon" href="assets/logo-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading">
+
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo" id="loaderLogo"></div>
+    <div class="loader-count"><span id="loadNum">0</span>%</div>
+    <div class="loader-bar"><i id="loadBar"></i></div>
+    <div class="loader-enter" id="loaderEnter">
+      <button class="btn-enter" id="enterSound" data-magnetic>
+        <span class="eq"><i></i><i></i><i></i><i></i></span>
+        ادخل التجربة بالصوت
+      </button>
+      <button class="btn-ghost" id="enterMute">بدون صوت</button>
+    </div>
+    <p class="loader-hint">🎧 التجربة أحلى بالسماعات</p>
+  </div>
+</div>
+
+<!-- ============ CURSOR ============ -->
+<div class="cursor" id="cursor"><span id="cursorLabel"></span></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="grain"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav-logo" data-hover aria-label="Green Apple"><span id="navLogo"></span></a>
+  <nav class="nav-links">
+    <a href="#about" data-hover>مين إحنا</a>
+    <a href="#agencies" data-hover>الوكالات</a>
+    <a href="#needs" data-hover>حلول</a>
+    <a href="#explorer" data-hover>المركبات</a>
+    <a href="#contact" data-hover>تواصل</a>
+  </nav>
+  <button class="sound-toggle" id="soundToggle" data-hover aria-label="تشغيل/إيقاف الموسيقى">
+    <span class="bars"><i></i><i></i><i></i><i></i><i></i></span>
+    <span class="sound-label" id="soundLabel">SOUND OFF</span>
+  </button>
+</header>
+
+<div class="scroll-progress"><i id="scrollProg"></i></div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <p class="eyebrow reveal-up"><span class="dot"></span> GREEN APPLE — FOR AGRICULTURE INVESTMENT</p>
+    <h1 class="hero-title">
+      <span class="line"><span class="split">اختار الأفضل</span></span>
+      <span class="line accent"><span class="split">لمحصولك</span></span>
+    </h1>
+    <p class="hero-sub reveal-up">بالعلم والخبرة.. 10 سنوات في خدمة المزارع المصري. 6 وكالات عالمية و60 مركب متخصص في مكان واحد.</p>
+    <div class="hero-cta reveal-up">
+      <a href="#agencies" class="btn-primary" data-magnetic data-hover>اكتشف الوكالات <span class="arr">←</span></a>
+      <a href="#explorer" class="btn-line" data-magnetic data-hover>كل المركبات</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><b data-count="10">0</b><span>سنين خبرة</span></div>
+    <div class="stat"><b data-count="6">0</b><span>وكالات عالمية</span></div>
+    <div class="stat"><b data-count="60">0</b><span>مركب متخصص</span></div>
+    <div class="stat"><b data-count="8">0</b><span>محاور حلول</span></div>
+  </div>
+  <div class="scroll-cue"><span>اسحب لتحت</span><i></i></div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="marquee-wrap" aria-hidden="true">
+  <div class="marquee" id="marquee1"></div>
+  <div class="marquee reverse" id="marquee2"></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-label"><span class="num">01</span><span>مين إحنا</span></div>
+    <p class="manifesto" id="manifesto">جرين ابل للاستثمار الزراعي بتجمع أقوى الوكالات العالمية في التغذية والمنشطات الحيوية والحماية، وبتحطها في إيد المزارع المصري ببرنامج علمي مظبوط لكل محصول ولكل مرحلة. من الجذر لحد الحصاد، إحنا معاك.</p>
+  </div>
+  <div class="pillars">
+    <article class="pillar" data-tilt>
+      <div class="pillar-ico">
+        <svg viewBox="0 0 64 64"><path d="M32 56V30M32 30c0-10 8-18 20-18 0 12-8 18-20 18Zm0 6c0-8-6-14-16-14 0 10 6 14 16 14Z"/></svg>
+      </div>
+      <h3>علم قبل البيع</h3><p>كل توصية مبنية على المرحلة الفسيولوجية للمحصول ومشكلته الفعلية.</p>
+    </article>
+    <article class="pillar" data-tilt>
+      <div class="pillar-ico">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20"/><path d="M12 32h40M32 12c7 6 10 13 10 20s-3 14-10 20M32 12c-7 6-10 13-10 20s3 14 10 20"/></svg>
+      </div>
+      <h3>وكالات عالمية</h3><p>JISA وMBFi وIntrolab وKheme وFertinagro وNewnutri تحت سقف واحد.</p>
+    </article>
+    <article class="pillar" data-tilt>
+      <div class="pillar-ico">
+        <svg viewBox="0 0 64 64"><path d="M14 50c10-2 18-10 20-22M34 28c4-8 10-12 18-14-2 8-6 14-14 18"/><circle cx="20" cy="22" r="6"/></svg>
+      </div>
+      <h3>متابعة في الأرض</h3><p>مهندسين في الحقل، تجارب حقيقية، ونتايج تتشاف بالعين.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ AGENCIES (horizontal) ============ -->
+<section class="agencies" id="agencies">
+  <div class="agencies-head">
+    <div class="about-label"><span class="num">02</span><span>الوكالات</span></div>
+    <h2 class="big-title"><span class="split">6 وكالات.</span> <span class="split muted">عالم واحد من الحلول.</span></h2>
+    <p class="hint-drag">اسحب لتحت عشان تلف بين الوكالات ← اضغط على أي وكالة تفتح البروفايل بتاعها</p>
+  </div>
+  <div class="h-pin" id="hPin">
+    <div class="h-track" id="hTrack"></div>
+  </div>
+</section>
+
+<!-- ============ NEEDS ============ -->
+<section class="needs" id="needs">
+  <div class="about-label"><span class="num">03</span><span>إيه مشكلتك؟</span></div>
+  <h2 class="big-title"><span class="split">اختار احتياج محصولك</span><br><span class="split muted">ونطلعلك الحل.</span></h2>
+  <div class="needs-grid" id="needsGrid"></div>
+</section>
+
+<!-- ============ EXPLORER ============ -->
+<section class="explorer" id="explorer">
+  <div class="explorer-head">
+    <div class="about-label"><span class="num">04</span><span>مستكشف المركبات</span></div>
+    <h2 class="big-title"><span class="split">60 مركب.</span> <span class="split muted">لاقي اللي يناسبك.</span></h2>
+  </div>
+  <div class="explorer-tools">
+    <div class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="search" type="search" placeholder="ابحث باسم المركب أو العنصر… (زنك، Unite، طحالب)" autocomplete="off">
+    </div>
+    <div class="chips" id="agencyChips"></div>
+    <div class="chips" id="needChips"></div>
+  </div>
+  <p class="result-count" id="resultCount"></p>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- ============ FIELD RESULTS ============ -->
+<section class="field" id="field">
+  <div class="about-label"><span class="num">05</span><span>من الأرض</span></div>
+  <h2 class="big-title"><span class="split">النتيجة</span> <span class="split muted">بتتكلم.</span></h2>
+  <div class="compare" id="compare">
+    <img src="assets/crops/strawberry-after.webp" alt="فراولة بعد المعاملة" class="cmp-after">
+    <div class="cmp-before-wrap" id="cmpBefore"><img src="assets/crops/strawberry-before.webp" alt="فراولة قبل المعاملة"></div>
+    <div class="cmp-handle" id="cmpHandle"><span>⟷</span></div>
+    <b class="cmp-tag before">قبل</b><b class="cmp-tag after">بعد</b>
+  </div>
+  <p class="field-cap">فراولة — إصابة النيوبستلوثيا قبل وبعد برنامج المعاملة. اسحب الخط عشان تقارن.</p>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <canvas id="contactCanvas"></canvas>
+  <div class="contact-inner">
+    <p class="eyebrow"><span class="dot"></span> تواصل معانا</p>
+    <h2 class="mega"><span class="split">يلا نزرع</span><br><span class="split accent">صح.</span></h2>
+    <div class="contact-cta">
+      <a class="btn-primary big" id="waMain" href="https://wa.me/201023653671" target="_blank" rel="noopener" data-magnetic data-hover>كلمنا واتساب <span class="arr">←</span></a>
+    </div>
+    <div class="contact-info">
+      <a href="tel:01023653671" data-hover><span>اتصل</span><b>01023653671</b></a>
+      <a href="tel:01040751999" data-hover><span>اتصل</span><b>01040751999</b></a>
+      <a href="https://greenappleai.com" target="_blank" rel="noopener" data-hover><span>الموقع</span><b>greenappleai.com</b></a>
+    </div>
+  </div>
+  <footer class="footer">
+    <span>© 2026 Green Apple For Agriculture Investment</span>
+    <span>جرين ابل للاستثمار الزراعي</span>
+  </footer>
+</section>
+</main>
+
+<!-- ============ AGENCY PROFILE OVERLAY ============ -->
+<div class="profile" id="profile" aria-hidden="true">
+  <div class="profile-wipe"></div>
+  <div class="profile-scroll" id="profileScroll">
+    <button class="close" id="profileClose" data-hover aria-label="إغلاق"><span></span><span></span></button>
+    <div class="profile-hero">
+      <div class="profile-bg-word" id="pfWord"></div>
+      <p class="eyebrow"><span class="dot"></span> <span id="pfOrigin"></span></p>
+      <h2 class="profile-name" id="pfName"></h2>
+      <p class="profile-ar" id="pfAr"></p>
+      <p class="profile-desc" id="pfDesc"></p>
+      <div class="profile-meta" id="pfMeta"></div>
+      <div class="profile-focus" id="pfFocus"></div>
+    </div>
+    <div class="profile-products">
+      <h3 class="pf-sub">مركبات الوكالة <span id="pfCount"></span></h3>
+      <div class="grid" id="pfGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PRODUCT MODAL ============ -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-card" id="modalCard">
+    <button class="close" id="modalClose" data-hover aria-label="إغلاق"><span></span><span></span></button>
+    <div class="modal-visual">
+      <div class="modal-ring"></div>
+      <img id="mImg" alt="">
+    </div>
+    <div class="modal-info">
+      <p class="m-agency" id="mAgency"></p>
+      <h3 class="m-en" id="mEn"></h3>
+      <p class="m-ar" id="mAr"></p>
+      <p class="m-tag" id="mTag"></p>
+      <div class="m-cats" id="mCats"></div>
+      <h4 class="m-h">التركيبة</h4>
+      <div class="m-comp" id="mComp"></div>
+      <div class="m-actions">
+        <a class="btn-primary" id="mWa" target="_blank" rel="noopener" data-magnetic data-hover>اسأل على المركب ده <span class="arr">←</span></a>
+        <div class="m-nav">
+          <button id="mPrev" data-hover aria-label="السابق">→</button>
+          <button id="mNext" data-hover aria-label="التالي">←</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/logo.js"></script>
+<script src="js/products.js"></script>
+<script src="js/agencies.js"></script>
+<script src="js/music.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
