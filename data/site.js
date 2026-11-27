@@ -91,12 +91,12 @@ window.SITE = {
   "siteTitle": "موقعنا الرسمي:",
   "agenciesTitle": "وكالاتنا العالمية:",
   "followTitle": "تابعنا على:",
-  "address": "",
+  "address": "Egypt, El Menufia Governate, Sadat City, Regional road, Polars parks Developers Zone, Plot S4",
   "email": "",
   "social": {
-   "facebook": "",
-   "instagram": "",
-   "linkedin": "",
+   "facebook": "https://www.facebook.com/greenappleai",
+   "instagram": "https://www.instagram.com/greenappleai",
+   "linkedin": "https://www.linkedin.com/company/greenappleai",
    "x": "",
    "tiktok": "",
    "youtube": ""

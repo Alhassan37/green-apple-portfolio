@@ -407,6 +407,7 @@ section { position: relative; }
 .sf-social svg { width: 26px; height: 26px; flex: none; }
 .sf-bottom { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: start; gap: 24px clamp(24px, 5vw, 72px); padding: 34px 0 20px; border-bottom: 1px solid var(--line); }
 .sf-legal p { margin: 0 0 7px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.sf-legal .sf-addr { unicode-bidi: plaintext; text-align: right; font-family: var(--en); font-size: 14px; }
 .sf-reach b { font-family: var(--en); color: var(--ink); direction: ltr; unicode-bidi: isolate; }
 .sf-reach a { color: var(--accent-text); font-weight: 700; font-family: var(--en); }
 .sf-nav { display: flex; flex-wrap: wrap; gap: 10px 34px; padding-top: 2px; }
