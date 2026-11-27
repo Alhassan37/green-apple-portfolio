@@ -1,0 +1,25 @@
+{
+  "name": "Green Apple — جرين ابل للاستثمار الزراعي",
+  "short_name": "Green Apple",
+  "description": "6 وكالات عالمية و60 مركب متخصص للتغذية والمنشطات الحيوية والحماية. اختار الأفضل لمحصولك.",
+  "id": "./",
+  "start_url": "./?source=app",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "ar",
+  "background_color": "#04110a",
+  "theme_color": "#04110a",
+  "categories": ["business", "agriculture", "shopping"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "الوكالات", "url": "./#agencies", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "كل المركبات", "url": "./#explorer", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "تواصل معانا", "url": "./#contact", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

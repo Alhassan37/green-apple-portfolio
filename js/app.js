@@ -238,6 +238,44 @@
     if (!saved) setTheme(e.matches ? 'light' : 'dark', false);
   });
 
+  /* ---------- phone menu ---------- */
+  const menuBtn = $('#menuBtn');
+  const setMenu = open => {
+    document.body.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open); $('#mobileMenu').setAttribute('aria-hidden', !open);
+    if (open) { lenis.stop(); $('#nav').classList.remove('hide'); } else if (!pfOpen && !modalOpen) lenis.start();
+  };
+  menuBtn.addEventListener('click', () => { setMenu(!document.body.classList.contains('menu-open')); Music.click(); });
+  $$('#mobileMenu a[href^="#"]').forEach(a => a.addEventListener('click', () => setMenu(false), true));
+
+  /* ---------- install as an app (PWA) ---------- */
+  const installBtns = ['#installBtn', '#mmInstall', '#ctaInstall'].map(s => $(s));
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  let deferredPrompt = null;
+  const showInstall = on => installBtns.forEach(b => b.hidden = !on || standalone);
+  addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; showInstall(true); });
+  addEventListener('appinstalled', () => { deferredPrompt = null; showInstall(false); });
+  if (isIOS && !standalone) showInstall(true);               // Safari has no prompt: show our own steps
+  const iosSheet = $('#iosSheet');
+  const closeIos = () => { iosSheet.classList.remove('open'); iosSheet.setAttribute('aria-hidden', 'true'); };
+  $('#iosClose').addEventListener('click', closeIos);
+  iosSheet.addEventListener('click', e => { if (e.target === iosSheet) closeIos(); });
+  installBtns.forEach(b => b.addEventListener('click', async () => {
+    setMenu(false);
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') showInstall(false);
+      deferredPrompt = null;
+    } else if (isIOS) {
+      iosSheet.classList.add('open'); iosSheet.setAttribute('aria-hidden', 'false');
+    }
+  }));
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  }
+
   /* ---------- sound toggle ---------- */
   const st = $('#soundToggle'), bars = $$('#soundToggle .bars i');
   st.addEventListener('click', () => Music.toggle());
