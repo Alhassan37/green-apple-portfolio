@@ -33,6 +33,9 @@
   gsap.ticker.add(t => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
   lenis.stop();
+  // always open at the top (the browser would otherwise restore a mid-page position behind the loader)
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) window.scrollTo(0, 0);
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href'); if (id.length < 2) return;
     const t = $(id); if (!t) return; e.preventDefault();
@@ -67,7 +70,11 @@
     const tl = gsap.timeline();
     tl.to('.loader-inner', { y: -40, opacity: 0, duration: .5, ease: 'power2.in' })
       .to('#loader', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut' }, '-=.1')
-      .add(() => { $('#loader').remove(); document.body.classList.remove('is-loading'); lenis.start(); ScrollTrigger.refresh(); })
+      .add(() => {
+        $('#loader').remove(); document.body.classList.remove('is-loading');
+        if (!location.hash) { window.scrollTo(0, 0); lenis.scrollTo(0, { immediate: true, force: true }); }
+        lenis.start(); ScrollTrigger.refresh();
+      })
       .add(heroIntro(), '-=.55');
   }
 
@@ -79,7 +86,8 @@
       .add(() => $$('[data-count]').forEach(el => {
         const o = { v: 0 }; gsap.to(o, { v: +el.dataset.count, duration: 2, ease: 'power3.out', onUpdate: () => el.textContent = Math.round(o.v) });
       }), '-=.8')
-      .from('#nav', { y: -80, opacity: 0, duration: 1, ease: 'expo.out' }, 0.2);
+      // explicit start/end + clearProps so the bar always lands at top:0 and the CSS hide-on-scroll keeps working
+      .fromTo('#nav', { y: -80, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'expo.out', clearProps: 'transform,opacity' }, 0.2);
     hero.intro = 0; gsap.to(hero, { intro: 1, duration: 2.6, ease: 'expo.out' });
     return tl;
   }
@@ -246,7 +254,8 @@
   let lastY = 0;
   lenis.on('scroll', ({ scroll, limit }) => {
     $('#nav').classList.toggle('scrolled', scroll > 40);
-    $('#nav').classList.toggle('hide', scroll > lastY && scroll > 400);
+    if (Math.abs(scroll - lastY) > 4) $('#nav').classList.toggle('hide', scroll > lastY && scroll > 400);
+    if (scroll < 400) $('#nav').classList.remove('hide');
     lastY = scroll;
     $('#scrollProg').style.transform = `scaleX(${limit ? scroll / limit : 0})`;
   });
