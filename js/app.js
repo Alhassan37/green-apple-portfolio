@@ -8,7 +8,7 @@
   const NEED = Object.fromEntries(N.map(n => [n.id, n]));
   const isTouch = matchMedia('(pointer: coarse)').matches;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const WA = '201023653671';
+  const WA = String((window.SITE && window.SITE.contact && window.SITE.contact.whatsapp) || '201023653671').replace(/\D/g, '');
   const mouse = { x: innerWidth / 2, y: innerHeight / 2, nx: 0, ny: 0 };
 
   /* ---------- logos ---------- */

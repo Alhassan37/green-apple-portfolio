@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link rel="stylesheet" href="css/style.css?v=12">
 <script>
   (function () {
     var t = null;
@@ -93,7 +93,7 @@
   </nav>
   <div class="mm-foot">
     <button class="btn-primary" id="mmInstall" hidden>نزّل التطبيق على موبايلك</button>
-    <a href="https://wa.me/201023653671" target="_blank" rel="noopener" class="btn-line">واتساب 01023653671</a>
+    <a href="https://wa.me/201023653671" target="_blank" rel="noopener" class="btn-line" id="mmWa">واتساب 01023653671</a>
   </div>
 </div>
 
@@ -120,18 +120,18 @@
   <canvas id="heroCanvas"></canvas>
   <div class="hero-glow"></div>
   <div class="hero-content">
-    <p class="eyebrow reveal-up"><span class="dot"></span> GREEN APPLE — FOR AGRICULTURE INVESTMENT</p>
+    <p class="eyebrow reveal-up"><span class="dot"></span> <span data-k="hero.eyebrow">GREEN APPLE — FOR AGRICULTURE INVESTMENT</span></p>
     <h1 class="hero-title">
-      <span class="line"><span class="split">اختار الأفضل</span></span>
-      <span class="line accent"><span class="split">لمحصولك</span></span>
+      <span class="line"><span class="split" data-k="hero.line1">اختار الأفضل</span></span>
+      <span class="line accent"><span class="split" data-k="hero.line2">لمحصولك</span></span>
     </h1>
-    <p class="hero-sub reveal-up">بالعلم والخبرة.. 10 سنوات في خدمة المزارع المصري. 6 وكالات عالمية و60 مركب متخصص في مكان واحد.</p>
+    <p class="hero-sub reveal-up" data-k="hero.sub">بالعلم والخبرة.. 10 سنوات في خدمة المزارع المصري. 6 وكالات عالمية و60 مركب متخصص في مكان واحد.</p>
     <div class="hero-cta reveal-up">
-      <a href="#agencies" class="btn-primary" data-magnetic data-hover>اكتشف الوكالات <span class="arr">←</span></a>
-      <a href="#explorer" class="btn-line" data-magnetic data-hover>كل المركبات</a>
+      <a href="#agencies" class="btn-primary" data-magnetic data-hover><span data-k="hero.btn1">اكتشف الوكالات</span> <span class="arr">←</span></a>
+      <a href="#explorer" class="btn-line" data-magnetic data-hover data-k="hero.btn2">كل المركبات</a>
     </div>
   </div>
-  <div class="hero-stats">
+  <div class="hero-stats" id="heroStats">
     <div class="stat"><b data-count="10">0</b><span>سنين خبرة</span></div>
     <div class="stat"><b data-count="6">0</b><span>وكالات عالمية</span></div>
     <div class="stat"><b data-count="60">0</b><span>مركب متخصص</span></div>
@@ -149,27 +149,27 @@
 <!-- ============ ABOUT ============ -->
 <section class="about" id="about">
   <div class="about-grid">
-    <div class="about-label"><span class="num">01</span><span>مين إحنا</span></div>
-    <p class="manifesto" id="manifesto">جرين ابل للاستثمار الزراعي بتجمع أقوى الوكالات العالمية في التغذية والمنشطات الحيوية والحماية، وبتحطها في إيد المزارع المصري ببرنامج علمي مظبوط لكل محصول ولكل مرحلة. من الجذر لحد الحصاد، إحنا معاك.</p>
+    <div class="about-label"><span class="num">01</span><span data-k="about.label">مين إحنا</span></div>
+    <p class="manifesto" id="manifesto" data-k="about.manifesto">جرين ابل للاستثمار الزراعي بتجمع أقوى الوكالات العالمية في التغذية والمنشطات الحيوية والحماية، وبتحطها في إيد المزارع المصري ببرنامج علمي مظبوط لكل محصول ولكل مرحلة. من الجذر لحد الحصاد، إحنا معاك.</p>
   </div>
   <div class="pillars">
     <article class="pillar" data-tilt>
       <div class="pillar-ico">
         <svg viewBox="0 0 64 64"><path d="M32 56V30M32 30c0-10 8-18 20-18 0 12-8 18-20 18Zm0 6c0-8-6-14-16-14 0 10 6 14 16 14Z"/></svg>
       </div>
-      <h3>علم قبل البيع</h3><p>كل توصية مبنية على المرحلة الفسيولوجية للمحصول ومشكلته الفعلية.</p>
+      <h3 data-k="pillars.0.title">علم قبل البيع</h3><p data-k="pillars.0.text">كل توصية مبنية على المرحلة الفسيولوجية للمحصول ومشكلته الفعلية.</p>
     </article>
     <article class="pillar" data-tilt>
       <div class="pillar-ico">
         <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20"/><path d="M12 32h40M32 12c7 6 10 13 10 20s-3 14-10 20M32 12c-7 6-10 13-10 20s3 14 10 20"/></svg>
       </div>
-      <h3>وكالات عالمية</h3><p>JISA وMBFi وIntrolab وKheme وFertinagro وNewnutri تحت سقف واحد.</p>
+      <h3 data-k="pillars.1.title">وكالات عالمية</h3><p data-k="pillars.1.text">JISA وMBFi وIntrolab وKheme وFertinagro وNewnutri تحت سقف واحد.</p>
     </article>
     <article class="pillar" data-tilt>
       <div class="pillar-ico">
         <svg viewBox="0 0 64 64"><path d="M14 50c10-2 18-10 20-22M34 28c4-8 10-12 18-14-2 8-6 14-14 18"/><circle cx="20" cy="22" r="6"/></svg>
       </div>
-      <h3>متابعة في الأرض</h3><p>مهندسين في الحقل، تجارب حقيقية، ونتايج تتشاف بالعين.</p>
+      <h3 data-k="pillars.2.title">متابعة في الأرض</h3><p data-k="pillars.2.text">مهندسين في الحقل، تجارب حقيقية، ونتايج تتشاف بالعين.</p>
     </article>
   </div>
 </section>
@@ -177,10 +177,10 @@
 <!-- ============ AGENCIES (horizontal) ============ -->
 <section class="agencies" id="agencies">
   <div class="agencies-head">
-    <div class="about-label"><span class="num">02</span><span>الوكالات</span></div>
-    <h2 class="big-title"><span class="split">6 وكالات.</span> <span class="split muted">عالم واحد من الحلول.</span></h2>
+    <div class="about-label"><span class="num">02</span><span data-k="agencies.label">الوكالات</span></div>
+    <h2 class="big-title"><span class="split" data-k="agencies.title1">6 وكالات.</span> <span class="split muted" data-k="agencies.title2">عالم واحد من الحلول.</span></h2>
     <div class="car-bar">
-      <p class="hint-drag"><span class="hand">↔</span> اسحب يمين وشمال، أو استخدم الأسهم، واضغط على الوكالة تفتح البروفايل</p>
+      <p class="hint-drag"><span class="hand">↔</span> <span data-k="agencies.hint">اسحب يمين وشمال، أو استخدم الأسهم، واضغط على الوكالة تفتح البروفايل</span></p>
       <div class="car-ctrl">
         <button class="car-btn" id="carPrev" data-hover aria-label="الوكالة السابقة">→</button>
         <span class="car-count"><b id="carNum">01</b> / 06</span>
@@ -196,16 +196,16 @@
 
 <!-- ============ NEEDS ============ -->
 <section class="needs" id="needs">
-  <div class="about-label"><span class="num">03</span><span>إيه مشكلتك؟</span></div>
-  <h2 class="big-title"><span class="split">اختار احتياج محصولك</span><br><span class="split muted">ونطلعلك الحل.</span></h2>
+  <div class="about-label"><span class="num">03</span><span data-k="needs.label">إيه مشكلتك؟</span></div>
+  <h2 class="big-title"><span class="split" data-k="needs.title1">اختار احتياج محصولك</span><br><span class="split muted" data-k="needs.title2">ونطلعلك الحل.</span></h2>
   <div class="needs-grid" id="needsGrid"></div>
 </section>
 
 <!-- ============ EXPLORER ============ -->
 <section class="explorer" id="explorer">
   <div class="explorer-head">
-    <div class="about-label"><span class="num">04</span><span>مستكشف المركبات</span></div>
-    <h2 class="big-title"><span class="split">60 مركب.</span> <span class="split muted">لاقي اللي يناسبك.</span></h2>
+    <div class="about-label"><span class="num">04</span><span data-k="explorer.label">مستكشف المركبات</span></div>
+    <h2 class="big-title"><span class="split" data-k="explorer.title1">60 مركب.</span> <span class="split muted" data-k="explorer.title2">لاقي اللي يناسبك.</span></h2>
   </div>
   <div class="explorer-tools">
     <div class="search">
@@ -221,9 +221,9 @@
 
 <!-- ============ FROM THE FIELD: events · crops · products · testimonials ============ -->
 <section class="field" id="field">
-  <div class="about-label"><span class="num">05</span><span>من الأرض</span></div>
-  <h2 class="big-title"><span class="split">إيفنتات وتجارب</span><br><span class="split muted">ونتايج من الأرض.</span></h2>
-  <p class="field-lead">كل اللي بنعمله في الحقل وبره الحقل: معارض ورحلات مع عملائنا، تجارب المركبات على كل محصول، وآراء المزارعين بصوتهم.</p>
+  <div class="about-label"><span class="num">05</span><span data-k="field.label">من الأرض</span></div>
+  <h2 class="big-title"><span class="split" data-k="field.title1">إيفنتات وتجارب</span><br><span class="split muted" data-k="field.title2">ونتايج من الأرض.</span></h2>
+  <p class="field-lead" data-k="field.lead">كل اللي بنعمله في الحقل وبره الحقل: معارض ورحلات مع عملائنا، تجارب المركبات على كل محصول، وآراء المزارعين بصوتهم.</p>
   <div class="field-stats" id="fieldStats"></div>
   <div class="ftabs" role="tablist" id="fieldTabs">
     <button class="ftab active" role="tab" data-tab="events" aria-selected="true">الإيفنتات</button>
@@ -242,9 +242,9 @@
 <section class="team" id="team">
   <div class="team-grid">
     <div class="team-copy">
-      <div class="about-label"><span class="num">06</span><span>Our Team · فريقنا</span></div>
-      <h2 class="big-title"><span class="split">من كل مكان</span><br><span class="split muted">فريق واحد.</span></h2>
-      <p class="team-text" id="teamText">مهندسينا في الأرض جنب كل مزارع: من المنيا للصعيد لبني سويف، في الصوب والعنب والنخيل والموز. اتفرّج على الفيديو أو اضغط على أي جملة تروح لها.</p>
+      <div class="about-label"><span class="num">06</span><span data-k="team.label">Our Team · فريقنا</span></div>
+      <h2 class="big-title"><span class="split" data-k="team.title1">من كل مكان</span><br><span class="split muted" data-k="team.title2">فريق واحد.</span></h2>
+      <p class="team-text" id="teamText" data-k="team.text">مهندسينا في الأرض جنب كل مزارع: من المنيا للصعيد لبني سويف، في الصوب والعنب والنخيل والموز. اتفرّج على الفيديو أو اضغط على أي جملة تروح لها.</p>
       <ol class="team-script" id="teamScript" aria-label="كلام الفيديو"></ol>
       <div class="team-facts" id="teamFacts"></div>
     </div>
@@ -255,7 +255,7 @@
   </div>
   <figure class="team-group">
     <img src="assets/team/group.webp" alt="فريق جرين ابل في معرض صحارى 2026" loading="lazy" decoding="async">
-    <figcaption>فريق جرين ابل — معرض صحارى، سبتمبر 2026</figcaption>
+    <figcaption data-k="team.groupCaption">فريق جرين ابل — معرض صحارى، سبتمبر 2026</figcaption>
   </figure>
   <div class="team-strip" aria-hidden="true"><div class="team-strip-track" id="teamStrip"></div></div>
 </section>
@@ -264,23 +264,23 @@
 <section class="contact" id="contact">
   <canvas id="contactCanvas"></canvas>
   <div class="contact-inner">
-    <p class="eyebrow"><span class="dot"></span> تواصل معانا</p>
-    <h2 class="mega"><span class="split">يلا نزرع</span><br><span class="split accent">صح.</span></h2>
+    <p class="eyebrow"><span class="dot"></span> <span data-k="contact.eyebrow">تواصل معانا</span></p>
+    <h2 class="mega"><span class="split" data-k="contact.title1">يلا نزرع</span><br><span class="split accent" data-k="contact.title2">صح.</span></h2>
     <div class="contact-cta">
-      <a class="btn-primary big" id="waMain" href="https://wa.me/201023653671" target="_blank" rel="noopener" data-magnetic data-hover>كلمنا واتساب <span class="arr">←</span></a>
+      <a class="btn-primary big" id="waMain" href="https://wa.me/201023653671" target="_blank" rel="noopener" data-magnetic data-hover><span data-k="contact.whatsappLabel">كلمنا واتساب</span> <span class="arr">←</span></a>
       <button class="btn-line big-line" id="ctaInstall" data-hover hidden>
         <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg> نزّل تطبيق Green Apple
       </button>
     </div>
-    <div class="contact-info">
+    <div class="contact-info" id="contactInfo">
       <a href="tel:01023653671" data-hover><span>اتصل</span><b>01023653671</b></a>
       <a href="tel:01040751999" data-hover><span>اتصل</span><b>01040751999</b></a>
       <a href="https://greenappleai.com" target="_blank" rel="noopener" data-hover><span>الموقع</span><b>greenappleai.com</b></a>
     </div>
   </div>
   <footer class="footer">
-    <span>© 2026 Green Apple For Agriculture Investment</span>
-    <span>جرين ابل للاستثمار الزراعي</span>
+    <span data-k="footer.left">© 2026 Green Apple For Agriculture Investment</span>
+    <span data-k="footer.right">جرين ابل للاستثمار الزراعي</span>
   </footer>
 </section>
 </main>
@@ -354,12 +354,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/logo.js?v=11"></script>
-<script src="js/products.js?v=11"></script>
-<script src="js/agencies.js?v=11"></script>
-<script src="js/field.js?v=11"></script>
-<script src="js/music.js?v=11"></script>
-<script src="js/app.js?v=11"></script>
-<script src="js/fieldui.js?v=11"></script>
+<script src="js/logo.js?v=12"></script>
+<script src="data/site.js?v=12"></script>
+<script src="data/products.js?v=12"></script>
+<script src="data/agencies.js?v=12"></script>
+<script src="data/needs.js?v=12"></script>
+<script src="data/events.js?v=12"></script>
+<script src="data/crops.js?v=12"></script>
+<script src="data/trials.js?v=12"></script>
+<script src="data/testimonials.js?v=12"></script>
+<script src="js/preview.js?v=12"></script>
+<script src="js/music.js?v=12"></script>
+<script src="js/app.js?v=12"></script>
+<script src="js/fieldui.js?v=12"></script>
 </body>
 </html>
