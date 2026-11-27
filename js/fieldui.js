@@ -266,7 +266,7 @@
     if (m) { showTab(m[1] === 'event' ? 'events' : m[1] === 'crop' ? 'crops' : 'products', true); openPage(m[1], decodeURIComponent(m[2]), false); }
   };
   addEventListener('hashchange', fromHash);
-  const waitEnter = setInterval(() => { if (!document.getElementById('loader')) { clearInterval(waitEnter); fromHash(); } }, 200);
+  const waitEnter = setInterval(() => { if (!document.getElementById('gate')) { clearInterval(waitEnter); fromHash(); } }, 200);
 
   /* ---------- team ---------- */
   const tv = $('#teamVideo');

@@ -13,7 +13,6 @@
 
   /* ---------- logos ---------- */
   $('#navLogo').innerHTML = window.LOGO;
-  $('#loaderLogo').innerHTML = window.LOGO_MARK;
 
   /* ---------- word splitting (keeps Arabic letters joined) ---------- */
   function splitWords(el) {
@@ -43,40 +42,17 @@
   }));
 
   /* =========================================================
-     LOADER
+     ENTRANCE — the farm gate (js/gate.js) calls GA_enterSite() as the camera walks through
   ========================================================= */
-  (function loader() {
-    const imgs = P.slice(0, 30).map(p => p.img).concat(['assets/crops/strawberry-before.webp', 'assets/crops/strawberry-after.webp']);
-    let done = 0; const total = imgs.length + 1;
-    const prog = { v: 0 };
-    const tick = () => { done++; gsap.to(prog, { v: done / total * 100, duration: .4, onUpdate: upd }); };
-    const upd = () => { $('#loadNum').textContent = Math.round(prog.v); $('#loadBar').style.width = prog.v + '%'; };
-    imgs.forEach(src => { const i = new Image(); i.onload = i.onerror = tick; i.src = src; });
-    document.fonts.ready.then(tick);
-    gsap.fromTo('#loaderLogo path', { opacity: 0, scale: .9, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 1.4, stagger: .2, ease: 'expo.out' });
-    const minTime = new Promise(r => setTimeout(r, 900));
-    const all = new Promise(r => { const iv = setInterval(() => { if (done >= total) { clearInterval(iv); r(); } }, 80); setTimeout(r, 6000); });
-    Promise.all([minTime, all]).then(() => {
-      gsap.to(prog, { v: 100, duration: .3, onUpdate: upd });
-      $('#loaderEnter').classList.add('show');
-    });
-    $('#enterSound').addEventListener('click', () => { Music.start(); enter(); });
-    $('#enterMute').addEventListener('click', enter);
-  })();
-
+  P.slice(0, 30).forEach(p => { const i = new Image(); i.src = p.img; });   // warm the cache while the visitor is at the gate
   function enter() {
     if (document.body.dataset.entered) return; document.body.dataset.entered = 1;
-    Music.whoosh(true);
-    const tl = gsap.timeline();
-    tl.to('.loader-inner', { y: -40, opacity: 0, duration: .5, ease: 'power2.in' })
-      .to('#loader', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut' }, '-=.1')
-      .add(() => {
-        $('#loader').remove(); document.body.classList.remove('is-loading');
-        if (!location.hash) { window.scrollTo(0, 0); lenis.scrollTo(0, { immediate: true, force: true }); }
-        lenis.start(); ScrollTrigger.refresh();
-      })
-      .add(heroIntro(), '-=.55');
+    document.body.classList.remove('is-loading');
+    if (!location.hash) { window.scrollTo(0, 0); lenis.scrollTo(0, { immediate: true, force: true }); }
+    lenis.start(); ScrollTrigger.refresh();
+    heroIntro();
   }
+  window.GA_enterSite = enter;
 
   function heroIntro() {
     const tl = gsap.timeline();
@@ -183,15 +159,22 @@
   /* =========================================================
      CURSOR + MAGNETIC + SOUND HOOKS
   ========================================================= */
-  const cur = $('#cursor'), dot = $('#cursorDot'), curLabel = $('#cursorLabel');
+  const cur = $('#cursor'), curLabel = $('#cursorLabel'), leaf = $('#cursorLeaf');
   addEventListener('pointermove', e => {
     mouse.x = e.clientX; mouse.y = e.clientY;
     mouse.nx = e.clientX / innerWidth * 2 - 1; mouse.ny = e.clientY / innerHeight * 2 - 1;
   }, { passive: true });
   if (!isTouch) {
-    const xTo = gsap.quickTo(cur, 'x', { duration: .45, ease: 'power3' }), yTo = gsap.quickTo(cur, 'y', { duration: .45, ease: 'power3' });
-    const dx = gsap.quickTo(dot, 'x', { duration: .08 }), dy = gsap.quickTo(dot, 'y', { duration: .08 });
-    addEventListener('pointermove', e => { xTo(e.clientX); yTo(e.clientY); dx(e.clientX); dy(e.clientY); });
+    // the leaf follows the pointer (its tip is the hotspot) and tilts with the movement
+    const xTo = gsap.quickTo(cur, 'x', { duration: .1, ease: 'power3' }), yTo = gsap.quickTo(cur, 'y', { duration: .1, ease: 'power3' });
+    gsap.set(leaf, { transformOrigin: '1px 6px' });
+    const rTo = gsap.quickTo(leaf, 'rotation', { duration: .5, ease: 'power3' });
+    let lx = 0, rest;
+    addEventListener('pointermove', e => {
+      xTo(e.clientX); yTo(e.clientY);
+      rTo(gsap.utils.clamp(-28, 28, (e.clientX - lx) * 1.6)); lx = e.clientX;
+      clearTimeout(rest); rest = setTimeout(() => rTo(0), 90);
+    });
   }
   function hoverables(root = document) {
     $$('[data-hover], .chip, .card, .need, .a-panel', root).forEach(el => {

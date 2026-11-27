@@ -71,42 +71,61 @@ img { display: block; max-width: 100%; }
 }
 @keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-3%,2%)} 40%{transform:translate(2%,-3%)} 60%{transform:translate(-2%,-1%)} 80%{transform:translate(3%,3%)} 100%{transform:translate(0,0)} }
 
-/* ---------- cursor ---------- */
-.cursor, .cursor-dot { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 1000; border-radius: 50%; display: none; }
-@media (pointer: fine) { .cursor, .cursor-dot { display: block; } }
-.cursor {
-  width: 38px; height: 38px; margin: -19px 0 0 -19px; border: 1.5px solid var(--accent);
-  display: grid; place-items: center; transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .3s, border-color .3s;
-}
-.cursor span { font-size: 12px; font-weight: 800; color: var(--on-accent); opacity: 0; transition: opacity .2s; white-space: nowrap; }
-.cursor.hover { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: color-mix(in srgb, var(--accent) 14%, transparent); }
-.cursor.label { width: 92px; height: 92px; margin: -46px 0 0 -46px; background: var(--accent); border-color: var(--accent); }
-.cursor.label span { opacity: 1; }
-.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--accent); }
+/* ---------- cursor: the leaf from the logo ---------- */
+.cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 1000; display: none; }
+@media (pointer: fine) { .cursor { display: block; } }
+.cursor .leaf { position: absolute; left: -1px; top: -6px; width: 30px; height: 25px; transform-origin: 1px 6px; transition: transform .35s var(--ease); }
+.cursor .leaf i { display: block; width: 100%; height: 100%; }
+.cursor .leaf svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .3)); }
+.cursor .leaf path { fill: var(--brand); stroke: rgba(255, 255, 255, .92); stroke-width: 8; paint-order: stroke; stroke-linejoin: round; transition: fill .3s; }
+.cursor.hover .leaf { transform: scale(1.3); }
+.cursor.hover .leaf path, .cursor.label .leaf path { fill: var(--accent); }
+.cursor span { position: absolute; left: 24px; top: 22px; padding: 6px 13px; border-radius: 99px; background: var(--accent); color: var(--on-accent); font-size: 12px; font-weight: 800; white-space: nowrap; opacity: 0; transform: scale(.6); transform-origin: 0 0; transition: opacity .2s, transform .35s var(--ease); box-shadow: 0 6px 18px rgba(0, 0, 0, .18); }
+.cursor.label span { opacity: 1; transform: none; }
 
-/* ---------- loader ---------- */
-#loader { position: fixed; inset: 0; z-index: 500; background: var(--bg); display: grid; place-items: center; text-align: center; padding: 16px; }
-.loader-inner { width: min(420px, 100%); display: grid; justify-items: center; gap: 18px; }
-.loader-logo { width: 180px; }
-.loader-logo svg { width: 100%; height: auto; }
-.loader-count { font-family: var(--en); font-size: 64px; font-weight: 700; line-height: 1; letter-spacing: -2px; }
-.loader-bar { width: 100%; height: 2px; background: var(--line); overflow: hidden; border-radius: 2px; }
-.loader-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--brand), var(--accent)); }
-.loader-enter { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; opacity: 0; pointer-events: none; transform: translateY(10px); }
-.loader-enter.show { opacity: 1; pointer-events: auto; transform: none; transition: .6s var(--ease); }
-.loader-hint { color: var(--muted); font-size: 14px; }
-.btn-enter {
-  display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; border-radius: 99px;
-  background: var(--accent); color: var(--on-accent); font-weight: 800; font-size: 17px;
-  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); animation: pulse 2s infinite;
+/* ---------- farm gate entrance ---------- */
+.gate {
+  --hz: 50vh; position: fixed; inset: 0; z-index: 500; overflow: hidden; outline: none; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
+  background: linear-gradient(180deg, #86b9a8 0, #c9ddb2 calc(var(--hz) * .45), #f3e2a6 calc(var(--hz) * .82), #ffd98c var(--hz), #6e9a4a calc(var(--hz) + 1px), #2b5624 100%);
 }
-@keyframes pulse { 70% { box-shadow: 0 0 0 22px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
-.btn-ghost { padding: 16px 22px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); font-weight: 600; }
-.btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
-.eq { display: inline-flex; gap: 3px; align-items: flex-end; height: 16px; }
-.eq i { width: 3px; background: currentColor; border-radius: 2px; animation: eq 1s ease-in-out infinite; }
-.eq i:nth-child(2) { animation-delay: -.3s } .eq i:nth-child(3) { animation-delay: -.6s } .eq i:nth-child(4) { animation-delay: -.15s }
-@keyframes eq { 0%,100% { height: 4px } 50% { height: 16px } }
+.g-stage { position: absolute; top: 0; left: 0; width: 1600px; height: 1300px; transform-origin: 0 0; }
+.g-ly { position: absolute; inset: 0; will-change: transform; pointer-events: none; }
+.g-ly > svg { position: absolute; top: 0; left: 0; overflow: visible; }
+.g-sun { position: absolute; left: 100px; top: 230px; width: 1400px; height: 800px; background: radial-gradient(ellipse at 50% 50%, #fffbe8 0%, rgba(255, 238, 175, .92) 9%, rgba(255, 216, 125, .42) 28%, rgba(255, 216, 125, 0) 60%); }
+.g-rays { position: absolute; left: 0; top: -170px; width: 1600px; height: 1600px; background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(255, 248, 215, .3) 0deg 3deg, rgba(255, 248, 215, 0) 3deg 11deg); -webkit-mask: radial-gradient(circle at 50% 50%, #000 0, transparent 52%); mask: radial-gradient(circle at 50% 50%, #000 0, transparent 52%); animation: gRays 120s linear infinite; }
+@keyframes gRays { to { transform: rotate(360deg); } }
+.g-bloom { position: absolute; left: 420px; top: 430px; width: 760px; height: 420px; background: radial-gradient(ellipse at 50% 50%, rgba(255, 251, 232, .95) 0, rgba(255, 234, 165, .55) 26%, rgba(255, 234, 165, 0) 66%); opacity: .7; mix-blend-mode: screen; pointer-events: none; }
+.g-doors { position: absolute; left: 660px; top: 596px; width: 280px; height: 316px; perspective: 1100px; pointer-events: auto; }
+.g-door { position: absolute; top: 0; width: 140px; height: 316px; }
+.g-door.l { left: 0; } .g-door.r { left: 140px; }
+.g-door svg { display: block; }
+.g-crack { position: absolute; left: 137px; top: 14px; width: 6px; height: 296px; background: linear-gradient(#fff8dc, #ffe39a); filter: blur(2px); opacity: .8; box-shadow: 0 0 22px 8px rgba(255, 228, 150, .55); transition: box-shadow .8s, opacity .8s; }
+.gate.ajar .g-crack { opacity: 1; box-shadow: 0 0 60px 26px rgba(255, 228, 150, .75); }
+.g-arch-t { font-family: var(--en); font-weight: 700; font-size: 40px; letter-spacing: 5px; fill: #1d2620; stroke: #f6e6b6; stroke-width: 1.2px; paint-order: stroke; }
+.g-board-t { font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 19px; fill: #f8ecd0; }
+.g-plq-t { font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 12.5px; fill: #2c3b2a; }
+.g-lamp { animation: gLamp 3.4s ease-in-out infinite; }
+@keyframes gLamp { 50% { opacity: .65; } }
+.g-birds { animation: gBirds 30s linear infinite; }
+@keyframes gBirds { from { transform: translate(-260px, 250px); } to { transform: translate(1900px, 160px); } }
+.g-bird path { animation: gFlap .45s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes gFlap { to { transform: scaleY(-.5); } }
+.g-sway { transform-box: fill-box; animation: gSway 6s ease-in-out infinite alternate; }
+.g-sway.b1 { transform-origin: 0 0; } .g-sway.b2 { transform-origin: 100% 0; animation-delay: -2.5s; }
+.g-sway.g1, .g-sway.g2 { transform-origin: 50% 100%; animation-duration: 4.4s; } .g-sway.g2 { animation-delay: -1.7s; }
+@keyframes gSway { from { transform: rotate(-1.3deg); } to { transform: rotate(1.3deg); } }
+.g-motes { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.g-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 56%, transparent 48%, rgba(16, 26, 8, .42) 100%); }
+.g-hint {
+  position: absolute; left: 0; right: 0; margin-inline: auto; width: max-content; bottom: calc(5vh + env(safe-area-inset-bottom, 0px)); transform: translateY(14px); opacity: 0; pointer-events: none;
+  display: flex; align-items: center; gap: 10px; padding: 11px 20px; border-radius: 99px; background: rgba(24, 36, 16, .34); border: 1px solid rgba(255, 246, 214, .42);
+  color: #fff8e6; font-weight: 700; font-size: 15px; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); text-shadow: 0 1px 6px rgba(0, 0, 0, .25);
+}
+.g-hint-dot { width: 9px; height: 9px; border-radius: 50%; background: #ffd772; box-shadow: 0 0 0 0 rgba(255, 215, 114, .7); animation: gDot 1.8s infinite; }
+@keyframes gDot { 70% { box-shadow: 0 0 0 12px rgba(255, 215, 114, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 215, 114, 0); } }
+.g-flash { position: absolute; inset: 0; background: radial-gradient(circle at 50% 55%, #fffcef 0, #fff3cf 55%, #ffe8ad 100%); opacity: 0; pointer-events: none; }
+.g-dark { position: absolute; inset: 0; background: #0b1a10; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .g-rays, .g-birds, .g-bird path, .g-sway, .g-lamp { animation: none; } }
 
 /* ---------- nav ---------- */
 .nav {

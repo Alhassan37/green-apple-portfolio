@@ -14,6 +14,7 @@
     { pad: [55, 59, 62, 64, 69], bass: 43, arp: [67, 69, 71, 74, 76, 78] }
   ];
   const BAR_STEPS = 16, CHORD_BARS = 2;
+  const VOL = 0.4;   // soft background level
 
   function impulse(sec, decay) {
     const len = ctx.sampleRate * sec, buf = ctx.createBuffer(2, len, ctx.sampleRate);
@@ -133,7 +134,7 @@
     if (!timer) { nextTime = ctx.currentTime + 0.1; timer = setInterval(schedule, 60); }
     master.gain.cancelScheduledValues(ctx.currentTime);
     master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
-    master.gain.linearRampToValueAtTime(0.85, ctx.currentTime + 2.5);
+    master.gain.linearRampToValueAtTime(VOL, ctx.currentTime + 3);
     M.on = true; document.dispatchEvent(new CustomEvent('music', { detail: true }));
   };
   M.stop = function () {
@@ -144,7 +145,22 @@
     M.on = false; document.dispatchEvent(new CustomEvent('music', { detail: false }));
     setTimeout(() => { if (!M.on) { clearInterval(timer); timer = null; } }, 900);
   };
-  M.toggle = () => (M.on ? M.stop() : M.start());
+  // the visitor's own on/off choice (the sound button) is remembered for next visits
+  const PREF = 'ga-sound';
+  M.toggle = () => {
+    if (M.on) M.stop(); else M.start();
+    try { localStorage.setItem(PREF, M.on ? 'on' : 'off'); } catch (e) {}
+  };
+  // music on by default, softly. Browsers keep audio silent until the first tap/click/key,
+  // so it starts on the first gesture (usually the click that opens the gate).
+  M.autoplay = function () {
+    let pref = null; try { pref = localStorage.getItem(PREF); } catch (e) {}
+    if (pref === 'off') return;
+    M.start();
+    const wake = () => { if (M.on && ctx && ctx.state !== 'running') ctx.resume(); if (ctx && ctx.state === 'running') off(); };
+    const off = () => ['pointerdown', 'keydown', 'touchend', 'click'].forEach(ev => removeEventListener(ev, wake, true));
+    ['pointerdown', 'keydown', 'touchend', 'click'].forEach(ev => addEventListener(ev, wake, true));
+  };
 
   /* 0..1 overall energy, and n frequency bands */
   M.level = function () {
@@ -201,6 +217,37 @@
       g.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.07 + 1.4);
       o.connect(g); g.connect(sfxBus); g.connect(reverb); o.start(now + i * 0.07); o.stop(now + i * 0.07 + 1.5);
     });
+  };
+
+  /* farm gate: wooden door creak + a latch, and birdsong */
+  M.creak = function () {
+    if (!ctx) return; if (ctx.state !== 'running') ctx.resume();
+    const now = ctx.currentTime + 0.05;
+    if (!noiseBuf) noise(now, 0.01, 100, 0.0001);
+    const latch = ctx.createBufferSource(); latch.buffer = noiseBuf;
+    const lf = ctx.createBiquadFilter(); lf.type = 'bandpass'; lf.frequency.value = 2400; lf.Q.value = 3;
+    const lg = ctx.createGain(); lg.gain.setValueAtTime(0.5, now); lg.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
+    latch.connect(lf); lf.connect(lg); lg.connect(sfxBus); latch.start(now); latch.stop(now + 0.1);
+    const o = ctx.createOscillator(); o.type = 'sawtooth';
+    const lfo = ctx.createOscillator(), lfoG = ctx.createGain(); lfo.frequency.value = 23; lfoG.gain.value = 18;
+    lfo.connect(lfoG); lfoG.connect(o.frequency);
+    o.frequency.setValueAtTime(95, now + 0.15); o.frequency.linearRampToValueAtTime(150, now + 0.8); o.frequency.linearRampToValueAtTime(110, now + 1.5);
+    const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 950; f.Q.value = 7;
+    const g = ctx.createGain(); g.gain.setValueAtTime(0, now + 0.15); g.gain.linearRampToValueAtTime(0.09, now + 0.4);
+    g.gain.linearRampToValueAtTime(0.05, now + 1.1); g.gain.exponentialRampToValueAtTime(0.0001, now + 1.7);
+    o.connect(f); f.connect(g); g.connect(sfxBus); g.connect(reverb);
+    o.start(now + 0.15); lfo.start(now + 0.15); o.stop(now + 1.8); lfo.stop(now + 1.8);
+  };
+  M.birds = function () {
+    if (!sfxOk()) return; const now = ctx.currentTime;
+    const n = 2 + Math.floor(Math.random() * 3), base = 2600 + Math.random() * 1400;
+    for (let i = 0; i < n; i++) {
+      const t = now + i * (0.11 + Math.random() * 0.06);
+      const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'sine';
+      o.frequency.setValueAtTime(base, t); o.frequency.exponentialRampToValueAtTime(base * 1.45, t + 0.04); o.frequency.exponentialRampToValueAtTime(base * 0.85, t + 0.09);
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.035, t + 0.012); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.1);
+      o.connect(g); g.connect(sfxBus); g.connect(reverb); o.start(t); o.stop(t + 0.12);
+    }
   };
 
   document.addEventListener('visibilitychange', () => {
