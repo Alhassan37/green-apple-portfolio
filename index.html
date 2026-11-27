@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=17">
+<link rel="stylesheet" href="css/style.css?v=18">
 <link rel="preload" href="assets/gate/door.webp" as="image">
 <script>
   (function () {
@@ -282,9 +282,34 @@
       <a href="https://greenappleai.com" target="_blank" rel="noopener" data-hover><span>الموقع</span><b>greenappleai.com</b></a>
     </div>
   </div>
-  <footer class="footer">
-    <span data-k="footer.left">© 2026 Green Apple For Agriculture Investment</span>
-    <span data-k="footer.right">جرين ابل للاستثمار الزراعي</span>
+  <footer class="site-footer" id="siteFooter">
+    <div class="sf-row sf-top">
+      <div class="sf-col">
+        <h4 data-k="footer.siteTitle">موقعنا الرسمي:</h4>
+        <a class="sf-link" id="sfSite" href="https://greenappleai.com" target="_blank" rel="noopener" data-hover>greenappleai.com</a>
+        <h4 class="sf-h2" data-k="footer.agenciesTitle">وكالاتنا العالمية:</h4>
+        <div class="sf-agencies" id="sfAgencies"></div>
+      </div>
+      <div class="sf-col sf-follow">
+        <h4 data-k="footer.followTitle">تابعنا على:</h4>
+        <div class="sf-social" id="sfSocial"></div>
+      </div>
+    </div>
+    <div class="sf-row sf-bottom">
+      <div class="sf-legal">
+        <p><span data-k="footer.left">© 2026 Green Apple For Agriculture Investment</span> - <span data-k="footer.rights">جميع الحقوق محفوظة</span></p>
+        <p data-k="footer.right">جرين ابل للاستثمار الزراعي</p>
+        <p id="sfAddress" hidden></p>
+        <p class="sf-reach" id="sfReach"></p>
+      </div>
+      <nav class="sf-nav" aria-label="روابط سريعة">
+        <a href="#agencies" data-hover>الوكالات</a>
+        <a href="#explorer" data-hover>المركبات</a>
+        <a href="#field" data-hover>من الأرض</a>
+        <a href="#team" data-hover>فريقنا</a>
+      </nav>
+      <a class="sf-up" href="#top" data-hover aria-label="ارجع لأول الصفحة">لأعلى <span>↑</span></a>
+    </div>
   </footer>
 </section>
 </main>
@@ -358,19 +383,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/logo.js?v=17"></script>
-<script src="data/site.js?v=17"></script>
-<script src="data/products.js?v=17"></script>
-<script src="data/agencies.js?v=17"></script>
-<script src="data/needs.js?v=17"></script>
-<script src="data/events.js?v=17"></script>
-<script src="data/crops.js?v=17"></script>
-<script src="data/trials.js?v=17"></script>
-<script src="data/testimonials.js?v=17"></script>
-<script src="js/preview.js?v=17"></script>
-<script src="js/music.js?v=17"></script>
-<script src="js/app.js?v=17"></script>
-<script src="js/gate.js?v=17"></script>
-<script src="js/fieldui.js?v=17"></script>
+<script src="js/logo.js?v=18"></script>
+<script src="data/site.js?v=18"></script>
+<script src="data/products.js?v=18"></script>
+<script src="data/agencies.js?v=18"></script>
+<script src="data/needs.js?v=18"></script>
+<script src="data/events.js?v=18"></script>
+<script src="data/crops.js?v=18"></script>
+<script src="data/trials.js?v=18"></script>
+<script src="data/testimonials.js?v=18"></script>
+<script src="js/preview.js?v=18"></script>
+<script src="js/music.js?v=18"></script>
+<script src="js/app.js?v=18"></script>
+<script src="js/gate.js?v=18"></script>
+<script src="js/fieldui.js?v=18"></script>
 </body>
 </html>

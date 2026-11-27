@@ -86,6 +86,20 @@ window.SITE = {
  },
  "footer": {
   "left": "© 2026 Green Apple For Agriculture Investment",
-  "right": "جرين ابل للاستثمار الزراعي"
+  "right": "جرين ابل للاستثمار الزراعي",
+  "rights": "جميع الحقوق محفوظة",
+  "siteTitle": "موقعنا الرسمي:",
+  "agenciesTitle": "وكالاتنا العالمية:",
+  "followTitle": "تابعنا على:",
+  "address": "",
+  "email": "",
+  "social": {
+   "facebook": "",
+   "instagram": "",
+   "linkedin": "",
+   "x": "",
+   "tiktok": "",
+   "youtube": ""
+  }
  }
 };
