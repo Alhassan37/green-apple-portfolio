@@ -151,11 +151,12 @@
     if (M.on) M.stop(); else M.start();
     try { localStorage.setItem(PREF, M.on ? 'on' : 'off'); } catch (e) {}
   };
-  // music on by default, softly. Browsers keep audio silent until the first tap/click/key,
-  // so it starts on the first gesture (usually the click that opens the gate).
+  // the site is silent by default: music (and the gate's sounds) only play for a visitor who
+  // turned them on with the sound button. Browsers keep audio silent until the first
+  // tap/click/key, so for them it starts on the first gesture (usually the click on the gate).
   M.autoplay = function () {
     let pref = null; try { pref = localStorage.getItem(PREF); } catch (e) {}
-    if (pref === 'off') return;
+    if (pref !== 'on') return;
     M.start();
     const wake = () => { if (M.on && ctx && ctx.state !== 'running') ctx.resume(); if (ctx && ctx.state === 'running') off(); };
     const off = () => ['pointerdown', 'keydown', 'touchend', 'click'].forEach(ev => removeEventListener(ev, wake, true));
