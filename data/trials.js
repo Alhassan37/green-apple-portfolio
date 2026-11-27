@@ -38,20 +38,7 @@ window.TRIALS = [
    "متابعة الاستطالة والنمو الخضري",
    "الزنك مهم لتكوين الأوكسين ونمو الأفرع"
   ],
-  "images": [
-   [
-    "assets/field/trials/xtreemzn-grape/01.webp",
-    "بعد المعاملة"
-   ],
-   [
-    "assets/field/trials/xtreemzn-grape/02.webp",
-    "بعد المعاملة"
-   ],
-   [
-    "assets/field/trials/xtreemzn-grape/03.webp",
-    "بعد المعاملة"
-   ]
-  ]
+  "images": []
  },
  {
   "id": "topk-orange",
