@@ -17,7 +17,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=15">
+<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="preload" href="assets/gate/door.webp" as="image">
 <script>
   (function () {
     var t = null;
@@ -29,9 +30,20 @@
 </head>
 <body class="is-loading">
 
-<!-- ============ FARM GATE ENTRANCE (js/gate.js) ============ -->
+<!-- ============ ENTRANCE: the farm gate (js/gate.js) ============ -->
 <div id="gate" class="gate" role="button" tabindex="0" aria-label="ادخل مزرعة جرين ابل" data-hover data-cursor="ادخل">
-  <div class="g-stage" id="gStage"></div>
+  <video class="g-vid" id="gVid" src="assets/gate/orchard.mp4" poster="assets/gate/orchard.webp" muted playsinline preload="auto" aria-hidden="true"></video>
+  <div class="g-set" id="gSet">
+    <div class="g-wall" id="gWall">
+      <div class="g-blur"></div>
+      <div class="g-photo"></div>
+      <div class="g-plaque"><i class="g-plaque-logo"></i><b>GREEN APPLE</b><span>جرين ابل للاستثمار الزراعي</span></div>
+    </div>
+    <div class="g-doors" id="gDoors"><div class="g-crack"></div><div class="g-leaf l"></div><div class="g-leaf r"></div></div>
+  </div>
+  <div class="g-shelf l" id="gShelfL"></div>
+  <div class="g-shelf r" id="gShelfR"></div>
+  <div class="g-strip" id="gStrip"></div>
   <canvas class="g-motes" id="gMotes"></canvas>
   <div class="g-vignette"></div>
   <div class="g-hint" id="gHint"><span class="g-hint-dot"></span>اضغط على البوابة للدخول</div>
@@ -346,19 +358,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/logo.js?v=15"></script>
-<script src="data/site.js?v=15"></script>
-<script src="data/products.js?v=15"></script>
-<script src="data/agencies.js?v=15"></script>
-<script src="data/needs.js?v=15"></script>
-<script src="data/events.js?v=15"></script>
-<script src="data/crops.js?v=15"></script>
-<script src="data/trials.js?v=15"></script>
-<script src="data/testimonials.js?v=15"></script>
-<script src="js/preview.js?v=15"></script>
-<script src="js/music.js?v=15"></script>
-<script src="js/app.js?v=15"></script>
-<script src="js/gate.js?v=15"></script>
-<script src="js/fieldui.js?v=15"></script>
+<script src="js/logo.js?v=16"></script>
+<script src="data/site.js?v=16"></script>
+<script src="data/products.js?v=16"></script>
+<script src="data/agencies.js?v=16"></script>
+<script src="data/needs.js?v=16"></script>
+<script src="data/events.js?v=16"></script>
+<script src="data/crops.js?v=16"></script>
+<script src="data/trials.js?v=16"></script>
+<script src="data/testimonials.js?v=16"></script>
+<script src="js/preview.js?v=16"></script>
+<script src="js/music.js?v=16"></script>
+<script src="js/app.js?v=16"></script>
+<script src="js/gate.js?v=16"></script>
+<script src="js/fieldui.js?v=16"></script>
 </body>
 </html>

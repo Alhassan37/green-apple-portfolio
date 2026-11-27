@@ -1,7 +1,7 @@
 /* Green Apple service worker — makes the site installable and fast on repeat visits.
    Pages: network first (always the newest version when online), cache as offline fallback.
    Everything else (CSS/JS/images/fonts/CDN libraries): served from cache, refreshed in the background. */
-const VERSION = 'ga-v15';
+const VERSION = 'ga-v16';
 const CORE = [
   './',
   './index.html',
