@@ -584,7 +584,7 @@
       .set(pfScroll, { opacity: 0 })
       .set('.profile-wipe', { transformOrigin: 'bottom' })
       .to('.profile-wipe', { scaleY: 0, duration: .7, ease: 'expo.out' })
-      .add(() => { pf.classList.remove('open'); pf.setAttribute('aria-hidden', 'true'); if (!modalOpen) { lenis.start(); document.body.classList.remove('lock'); } });
+      .add(() => { pf.classList.remove('open'); pf.setAttribute('aria-hidden', 'true'); if (!modalOpen && !window.GA_pageOpen) { lenis.start(); document.body.classList.remove('lock'); } });
   }
   $('#profileClose').addEventListener('click', closeProfile);
 
@@ -624,7 +624,7 @@
     if (!modalOpen) return; modalOpen = false;
     gsap.to('.modal-backdrop', { opacity: 0, duration: .4 });
     gsap.to(mc, { opacity: 0, y: 60, scale: .95, duration: .45, ease: 'power3.in', onComplete: () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); } });
-    if (!pfOpen) { lenis.start(); document.body.classList.remove('lock'); }
+    if (!pfOpen && !window.GA_pageOpen) { lenis.start(); document.body.classList.remove('lock'); }
   }
   function stepModal(d) { mIdx = (mIdx + d + mList.length) % mList.length; Music.hover(); fillModal(mList[mIdx]); }
   $('#modalClose').addEventListener('click', closeModal);
@@ -632,7 +632,7 @@
   $('#mNext').addEventListener('click', () => stepModal(1));
   $('#mPrev').addEventListener('click', () => stepModal(-1));
   addEventListener('keydown', e => {
-    if (e.key === 'Escape') { if (modalOpen) closeModal(); else closeProfile(); }
+    if (e.key === 'Escape') { if (modalOpen) closeModal(); else if (pfOpen) closeProfile(); else if (window.GA_closePage) window.GA_closePage(); }
     if (modalOpen && e.key === 'ArrowLeft') stepModal(1);
     if (modalOpen && e.key === 'ArrowRight') stepModal(-1);
   });
@@ -646,6 +646,7 @@
   ========================================================= */
   (function compare() {
     const box = $('#compare'), before = $('#cmpBefore'), handle = $('#cmpHandle');
+    if (!box) return;
     let drag = false;
     const set = pct => { pct = Math.max(4, Math.min(96, pct)); before.style.clipPath = `inset(0 0 0 ${pct}%)`; handle.style.left = pct + '%'; };
     const fromEv = e => { const r = box.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
@@ -690,6 +691,12 @@
   });
   ScrollTrigger.sort();
   hoverables(); tilt();
+  // shared helpers for js/fieldui.js
+  window.GA = {
+    lenis, hoverables, tilt, card, openModal, openProfile, isLight,
+    isOverlayOpen: () => pfOpen || modalOpen,
+    products: P, agencies: AG
+  };
   addEventListener('load', () => ScrollTrigger.refresh());
   if (reduce) gsap.globalTimeline.timeScale(3);
 })();

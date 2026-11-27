@@ -1,7 +1,7 @@
 /* Green Apple service worker — makes the site installable and fast on repeat visits.
    Pages: network first (always the newest version when online), cache as offline fallback.
    Everything else (CSS/JS/images/fonts/CDN libraries): served from cache, refreshed in the background. */
-const VERSION = 'ga-v8';
+const VERSION = 'ga-v11';
 const CORE = [
   './',
   './index.html',
@@ -26,6 +26,8 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (!/^https?:$/.test(url.protocol)) return;
+  // videos stream in byte ranges: let the network handle them directly
+  if (req.headers.has('range') || /\.(mp4|mov|webm)$/i.test(url.pathname)) return;
 
   if (req.mode === 'navigate') {
     e.respondWith(

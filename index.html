@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="stylesheet" href="css/style.css?v=11">
 <script>
   (function () {
     var t = null;
@@ -59,6 +59,8 @@
     <a href="#agencies" data-hover>الوكالات</a>
     <a href="#needs" data-hover>حلول</a>
     <a href="#explorer" data-hover>المركبات</a>
+    <a href="#field" data-hover>من الأرض</a>
+    <a href="#team" data-hover>فريقنا</a>
     <a href="#contact" data-hover>تواصل</a>
   </nav>
   <div class="nav-tools">
@@ -85,7 +87,9 @@
     <a href="#agencies"><span>02</span>الوكالات</a>
     <a href="#needs"><span>03</span>حلول</a>
     <a href="#explorer"><span>04</span>المركبات</a>
-    <a href="#contact"><span>05</span>تواصل</a>
+    <a href="#field"><span>05</span>من الأرض</a>
+    <a href="#team"><span>06</span>فريقنا</a>
+    <a href="#contact"><span>07</span>تواصل</a>
   </nav>
   <div class="mm-foot">
     <button class="btn-primary" id="mmInstall" hidden>نزّل التطبيق على موبايلك</button>
@@ -215,17 +219,45 @@
   <div class="grid" id="grid"></div>
 </section>
 
-<!-- ============ FIELD RESULTS ============ -->
+<!-- ============ FROM THE FIELD: events · crops · products · testimonials ============ -->
 <section class="field" id="field">
   <div class="about-label"><span class="num">05</span><span>من الأرض</span></div>
-  <h2 class="big-title"><span class="split">النتيجة</span> <span class="split muted">بتتكلم.</span></h2>
-  <div class="compare" id="compare">
-    <img src="assets/crops/strawberry-after.webp" alt="فراولة بعد المعاملة" class="cmp-after">
-    <div class="cmp-before-wrap" id="cmpBefore"><img src="assets/crops/strawberry-before.webp" alt="فراولة قبل المعاملة"></div>
-    <div class="cmp-handle" id="cmpHandle"><span>⟷</span></div>
-    <b class="cmp-tag before">قبل</b><b class="cmp-tag after">بعد</b>
+  <h2 class="big-title"><span class="split">إيفنتات وتجارب</span><br><span class="split muted">ونتايج من الأرض.</span></h2>
+  <p class="field-lead">كل اللي بنعمله في الحقل وبره الحقل: معارض ورحلات مع عملائنا، تجارب المركبات على كل محصول، وآراء المزارعين بصوتهم.</p>
+  <div class="field-stats" id="fieldStats"></div>
+  <div class="ftabs" role="tablist" id="fieldTabs">
+    <button class="ftab active" role="tab" data-tab="events" aria-selected="true">الإيفنتات</button>
+    <button class="ftab" role="tab" data-tab="crops" aria-selected="false">حسب المحصول</button>
+    <button class="ftab" role="tab" data-tab="products" aria-selected="false">حسب المركب</button>
+    <button class="ftab" role="tab" data-tab="voices" aria-selected="false">آراء العملاء</button>
+    <i class="ftab-ink" id="ftabInk"></i>
   </div>
-  <p class="field-cap">فراولة — إصابة النيوبستلوثيا قبل وبعد برنامج المعاملة. اسحب الخط عشان تقارن.</p>
+  <div class="fpanel active" data-panel="events" id="panelEvents"></div>
+  <div class="fpanel" data-panel="crops" id="panelCrops"></div>
+  <div class="fpanel" data-panel="products" id="panelProducts"></div>
+  <div class="fpanel" data-panel="voices" id="panelVoices"></div>
+</section>
+
+<!-- ============ OUR TEAM ============ -->
+<section class="team" id="team">
+  <div class="team-grid">
+    <div class="team-copy">
+      <div class="about-label"><span class="num">06</span><span>Our Team · فريقنا</span></div>
+      <h2 class="big-title"><span class="split">من كل مكان</span><br><span class="split muted">فريق واحد.</span></h2>
+      <p class="team-text" id="teamText">مهندسينا في الأرض جنب كل مزارع: من المنيا للصعيد لبني سويف، في الصوب والعنب والنخيل والموز. اتفرّج على الفيديو أو اضغط على أي جملة تروح لها.</p>
+      <ol class="team-script" id="teamScript" aria-label="كلام الفيديو"></ol>
+      <div class="team-facts" id="teamFacts"></div>
+    </div>
+    <div class="team-video">
+      <video id="teamVideo" src="assets/team/our-team.mp4" poster="assets/team/our-team.webp" playsinline controls preload="none"></video>
+      <button class="team-play" id="teamPlay" aria-label="شغّل فيديو الفريق"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+    </div>
+  </div>
+  <figure class="team-group">
+    <img src="assets/team/group.webp" alt="فريق جرين ابل في معرض صحارى 2026" loading="lazy" decoding="async">
+    <figcaption>فريق جرين ابل — معرض صحارى، سبتمبر 2026</figcaption>
+  </figure>
+  <div class="team-strip" aria-hidden="true"><div class="team-strip-track" id="teamStrip"></div></div>
 </section>
 
 <!-- ============ CONTACT ============ -->
@@ -274,6 +306,22 @@
   </div>
 </div>
 
+<!-- ============ FIELD DETAIL PAGE (event / crop / product results) ============ -->
+<div class="page" id="page" aria-hidden="true">
+  <div class="page-scroll" id="pageScroll" data-lenis-prevent>
+    <button class="close" id="pageClose" data-hover aria-label="رجوع"><span></span><span></span></button>
+    <article class="page-body" id="pageBody"></article>
+  </div>
+</div>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="close" id="lbClose" aria-label="إغلاق"><span></span><span></span></button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="السابق">→</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="التالي">←</button>
+</div>
+
 <!-- ============ PRODUCT MODAL ============ -->
 <div class="modal" id="modal" aria-hidden="true">
   <div class="modal-backdrop" id="modalBackdrop"></div>
@@ -306,10 +354,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="js/logo.js?v=8"></script>
-<script src="js/products.js?v=8"></script>
-<script src="js/agencies.js?v=8"></script>
-<script src="js/music.js?v=8"></script>
-<script src="js/app.js?v=8"></script>
+<script src="js/logo.js?v=11"></script>
+<script src="js/products.js?v=11"></script>
+<script src="js/agencies.js?v=11"></script>
+<script src="js/field.js?v=11"></script>
+<script src="js/music.js?v=11"></script>
+<script src="js/app.js?v=11"></script>
+<script src="js/fieldui.js?v=11"></script>
 </body>
 </html>
